@@ -2,7 +2,7 @@
 # 苏州经贸校园网双系统(win+linux)自动登录解决方案
 前言:  
 1. 本脚本仅适用于所有使用linux的同学，或有编程/系统知识的同学。
-2. 由于双系统切换会被识别为两台不同的设备，在某系统关机时未退出，在另一系统上会进入以下界面，需下线设备，再刷新登录，因此写了退出校园网的脚本，需让其在关机前执行。
+2. 由于双系统切换会被识别为两台不同的设备，在某系统关机时未退出，在另一系统上会进入以下界面，需手动下线设备，再刷新登录，因此写了退出校园网的脚本，需让其在关机前执行。
 ![图片](https://github.com/user-attachments/assets/82c983df-1160-4646-8d82-ed50f1e59a03)
 3.  脚本用js，shell，py分别写出三个版本，在scripts目录下， lg为登陆脚本,out为退出脚本。 winpkg目录下为windows的exe程序，linuxpkg目录下为linux的deb包与Arch包。两者均为python脚本的打包，exe必须和config.ini同目录，linux安装后需在有config.ini的目录下执行`sjmlogin`命令。 Linux用户直接用shell(.sh)即可。运行js需要node,py需要python环境。不想要环境直接用构建的软件包并配合config.ini。 
 4. 用软件包不想用config.ini, 在sjmlogin.py找到request_body这样的请求体，改成自己的信息，运行或者重新打包，就可以不用config.ini,直接运行。

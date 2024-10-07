@@ -90,21 +90,30 @@ password= Sjmxxxxxx  # 密码，Sjm+身份证后六位
 
 
 ## Windows平台
-> 用exe搭配config.ini, 新建一个目录把exe和config.ini放在同一个目录。
-> 不想用可执行文件的，自己写.bat或.ps1脚本。很抱歉我没有提供，但思路基本一模一样。（推荐）
+> 下载release中的win.zip解压到一个目录下
+> 或手动克隆本仓库，按确保以下文件处于同一目录。
+![屏幕截图(1)_021631](https://github.com/user-attachments/assets/4218ed8e-64af-417a-906d-8b17828fad04)
+> bat脚本是为了方便开机关机运行脚本。
 ### 信息配置
-1. 把sjmlogin.exe和sjmout.exe和config.ini放到同一个目录下，我已经打包成zip放在release,直接下载并解压即可
-2. 在config.ini下写入如下配置
+1. 在config.ini下写入如下配置
 ```
 [login]
 domain = telecom    # 运营商 default | cmcc | telecom | unicom，分别是校园网、移动、电信、联通，填入自己办理的运营商。
 username= xxxxxx0222  # 苏州经贸学号
 password= Sjmxxxxxx  # 密码，Sjm+身份证后六位
 ```
-3. 双击这两个exe分别测试是否正常运行。
+2. 双击这两个exe分别测试是否正常运行。
 
 ### 开机自启动与关机自动退出认证
+1. win+R打开运行，输入`gpedit.msc`回车打开组策略编辑器。
+2. 计算机配置＞windows设置＞脚本（启动/关机），双击启动和关机进行编辑。
+![屏幕截图(2)_021634](https://github.com/user-attachments/assets/e2d6749b-93d6-414e-906e-5ed5d4e71815)
+3. 点击添加
+![屏幕截图(3)_021635](https://github.com/user-attachments/assets/bf3d48cb-9703-45e9-8617-4b869892c704)
+4. 点击浏览，找到lg.bat打开即可。点击确定，再点击应用，确定即可。
+5. 关机同理，找到out.bat。
 
+(bat仅用于启动同目录下的exe，本脚本还没有bat或powershell实现，可以自己实现一个，就不需要exe和config.ini了。)
 
 
 ## 脚本相关

@@ -12,4 +12,4 @@ Invoke-WebRequest -UseBasicParsing -Uri "http://10.255.254.13/api/portal/v1/logi
   "X-Requested-With"="XMLHttpRequest"
 } `
 -ContentType "application/x-www-form-urlencoded; charset=UTF-8" `
--Body "{`"domain`":`"telecom`",`"username`":`"2403290222`",`"password`":`"Sjm027312`"}"
+-Body "{`"domain`":`"telecom`",`"username`":`"000000222`",`"password`":`"Sjm000000`"}"

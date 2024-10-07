@@ -110,8 +110,8 @@ password= Sjmxxxxxx  # 密码，Sjm+身份证后六位
 ![屏幕截图(2)_021634](https://github.com/user-attachments/assets/e2d6749b-93d6-414e-906e-5ed5d4e71815)
 3. 点击添加
 ![屏幕截图(3)_021635](https://github.com/user-attachments/assets/bf3d48cb-9703-45e9-8617-4b869892c704)
-4. 点击浏览，找到lg.bat打开即可。点击确定，再点击应用，确定即可。
-5. 关机同理，找到out.bat。
+4. 点击浏览，找到autologin.bat打开即可。点击确定，再点击应用，确定即可。
+5. 关机同理，找到autoout.bat。
 
 (bat仅用于启动同目录下的exe，本脚本还没有bat或powershell实现，可以自己实现一个，就不需要exe和config.ini了。)
 

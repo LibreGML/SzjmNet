@@ -109,14 +109,14 @@ Body "{`"domain`":`"telecom`",`"username`":`"你的学号`",`"password`":`"你�
 
 ### 软件包作用
 **仅用于学习**，最好用上面的**ps1脚本**。
-winpkg下的软件包主要用于**不方便使用脚本**的懒同学，autologin.exe需要和config.ini同目录，config.ini配置如下
+winpkg下的软件包主要用于**不方便使用脚本**的懒同学，去release下载打包好的win.zip,解压到本地目录， config.ini配置如下
 ```
 [login]
 domain = telecom    # 运营商 default | cmcc | telecom | unicom，分别是校园网、移动、电信、联通，填入自己办理的运营商。
 username= xxxxxx0222  # 苏州经贸学号
 password= Sjmxxxxxx  # 密码，Sjm+身份证后六位
 ```
-上网查软件开机自启的方法，有很多，让autologin.exe开机自启动即可。
+再按照上面那个方法添加autologin.bat和autoout.bat这两个脚本，实现自启动。不用切换到powershell脚本，直接就选脚本。
 
 
 
@@ -126,6 +126,7 @@ password= Sjmxxxxxx  # 密码，Sjm+身份证后六位
 2. 直接运行sh，js，py文件都要先找到请求体改成自己的信息。用exe要先在config.ini写自己的信息并且同目录。
 3. 直接运行js需要node环境，`node lg.js`，py需要python环境，Linux可能已经作为依赖被安装了。
 4. 这个脚本实际就只是发送一个post请求而已，任何语言都能轻松实现。
+5. 实际上只需要用到.ps1和.sh就行了，其他都是写着玩的，不用管。
 
 **自己实现**
 - 按f12或ctrl+shift+i打开浏览器开发者工具，点击网络，进入登陆界面，捕获一次请求

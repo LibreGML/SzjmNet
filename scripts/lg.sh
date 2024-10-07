@@ -22,8 +22,8 @@ headers=(
 # 构建请求体
 request_body='{
   "domain": "telecom",
-  "username": "2403290222",
-  "password": "Sjm027312"
+  "username": "xxxxxx0222",
+  "password": "Sjmxxxxxx"
 }'
 
 # 发送POST请求并解析响应

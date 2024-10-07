@@ -103,35 +103,8 @@ password= Sjmxxxxxx  # 密码，Sjm+身份证后六位
 ```
 3. 双击这两个exe分别测试是否正常运行。
 
-### 开机认证与关机退出认证
-**开机认证**
-> 在此不赘述，直接搜windows开机/关机自动执行程序，教程很多。
-> 推荐自己写bat或powershell脚本，方案会更多。
+### 开机自启动与关机自动退出认证
 
-- 把exe弄成快捷方式放到桌面，登陆后双击运行(推荐)
-- win有内置的任务计划程序， 可以在开机或退出自动启动程序
-- 把软件放启动目录，在用户主目录下的 `AppData\Roaming\Microsoft\Windows\「开始」菜单\程序\启动` （推荐）
-- 用本地组策略编辑器,win+r键入gpedit.msc,计算机配置>Windows设置>脚本(启动/关机)
-- `sc create Service binPath= 脚本路径  start= auto`添加自启动项
-- 把要执行的脚本，写进powershell配置文件里，然后让终端开机自启 （推荐）, 过程如下，在终端键入如下命令：
-```
-if (!(Test-Path -Path $PROFILE)) {
-  New-Item -ItemType File -Path $PROFILE -Force
-}
-```
-创建用户默认配置文件后，键入`notepad $PROFILE`。 powershell默认配置文件路径为`C:\Users\用户名\Documents\WindowsPowerShell\Microsoft.PowerShell_profile.ps1`
-选择性写入如下内容:
-```
-node lg.js脚本路径 # 需有node环境
-python sjmlogin.py脚本路径 # 需有python环境
-start sjmlogin.exe程序路径 # 推荐
-```
-Ctrl+S保存并退出。
-
-**关机退出**
-
-- 把exe弄成快捷方式放到桌面，关机前双击运行(推荐)
-- win有内置的任务计划程序， 可以在开机或退出自动启动程序
 
 
 ## 脚本相关

@@ -117,6 +117,7 @@ username= xxxxxx0222  # 苏州经贸学号
 password= Sjmxxxxxx  # 密码，Sjm+身份证后六位
 ```
 再按照上面那个方法添加autologin.bat和autoout.bat这两个脚本，实现自启动。不用切换到powershell脚本，直接就选脚本。
+不想要config.ini的改py脚本，直接把信息写在请求体，再用pyinstaller打包成exe即可。
 
 
 

@@ -21,8 +21,8 @@ const headers = {
 // 构建请求体
 const requestBody = {
   domain: "telecom",
-  username: "2403290222",
-  password: "Sjm027312"
+  username: "xxxxxx0222",
+  password: "Sjmxxxxxx"
 };
 
 // 将请求体转换为JSON字符串

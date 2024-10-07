@@ -4,12 +4,14 @@
 1. 本脚本仅适用于所有使用linux的同学，或有编程/系统知识的同学。
 2. 由于双系统切换会被识别为两台不同的设备，在某系统关机时未退出，在另一系统上会进入以下界面，需手动下线设备，再刷新登录，因此写了退出校园网的脚本，需让其在关机前执行。
 ![图片](https://github.com/user-attachments/assets/82c983df-1160-4646-8d82-ed50f1e59a03)
-3.  脚本用js，shell，py分别写出三个版本，在scripts目录下， lg为登陆脚本,out为退出脚本。 winpkg目录下为windows的exe程序，linuxpkg目录下为linux的deb包与Arch包。两者均为python脚本的打包，exe必须和config.ini同目录，linux安装后需在有config.ini的目录下执行`sjmlogin`命令。 Linux用户直接用shell(.sh)即可。运行js需要node,py需要python环境。不想要环境直接用构建的软件包并配合config.ini。 
-4. 用软件包不想用config.ini, 在sjmlogin.py找到request_body这样的请求体，改成自己的信息，运行或者重新打包，就可以不用config.ini,直接运行。
-5. 建议使用静态mac地址，然后去[自助服务](http://192.168.10.231:8080/Self/login/?302=LI)里找到左边的**无感知**打开，这样同一设备联网无需认证。账号是学号，密码Sjm+身份证后六位
+3.  脚本用js，shell，py分别写出三个版本，在scripts目录下， lg为登陆脚本,out为退出脚本。
+4.  winpkg目录下为windows的exe程序，linuxpkg目录下为linux的deb包与Arch包。两者均为python脚本的打包，exe必须和config.ini同目录，linux安装后需在有config.ini的目录下执行`sjmlogin`命令。 Linux用户直接用shell(.sh)即可。运行js需要node,py需要python环境。不想要环境直接用构建的软件包并配合config.ini。 
+5. 用软件包不想用config.ini, 在sjmlogin.py找到request_body这样的请求体，改成自己的信息，运行或者重新打包，就可以不用config.ini,直接运行。
+6. 建议使用静态mac地址，然后去[自助服务](http://192.168.10.231:8080/Self/login/?302=LI)里找到左边的**无感知**打开，这样同一设备联网无需认证。账号是学号，密码Sjm+身份证后六位
 
 
 ## Linux平台
+> 用NetworkManager而非systemd-networkd。
 > 建议用.sh脚本，写了nmcli monitor监控了网络情况，确保一定分配到ip后执行，避免过早执行。
 > .js脚本纯粹是为了做第二个校园网认证界面，但由于服务端禁止跨域，无法伪造cors而告终。
 ### 信息配置
@@ -90,6 +92,8 @@ password= Sjmxxxxxx  # 密码，Sjm+身份证后六位
 
 
 ## Windows平台
+*(bat仅用于启动同目录下的exe，本脚本还没有bat或powershell实现，可以自己实现一个，就不需要exe和config.ini了。)  *
+
 > 下载release中的win.zip解压到一个目录下
 > 或手动克隆本仓库，按确保以下文件处于同一目录。
 ![屏幕截图(1)_021631](https://github.com/user-attachments/assets/4218ed8e-64af-417a-906d-8b17828fad04)
@@ -110,10 +114,10 @@ password= Sjmxxxxxx  # 密码，Sjm+身份证后六位
 ![屏幕截图(2)_021634](https://github.com/user-attachments/assets/e2d6749b-93d6-414e-906e-5ed5d4e71815)
 3. 点击添加
 ![屏幕截图(3)_021635](https://github.com/user-attachments/assets/bf3d48cb-9703-45e9-8617-4b869892c704)
-4. 点击浏览，找到autologin.bat打开即可。点击确定，再点击应用，确定即可。
+4. 点击浏览，找到autologin.bat的路径打开即可。点击确定，再点击应用，确定即可。
 5. 关机同理，找到autoout.bat。
 
-(bat仅用于启动同目录下的exe，本脚本还没有bat或powershell实现，可以自己实现一个，就不需要exe和config.ini了。)
+
 
 
 ## 脚本相关

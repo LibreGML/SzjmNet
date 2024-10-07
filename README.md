@@ -4,10 +4,9 @@
 1. 本脚本仅适用于所有使用linux的同学，或有编程/系统知识的同学。
 2. 由于双系统切换会被识别为两台不同的设备，在某系统关机时未退出，在另一系统上会进入以下界面，需手动下线设备，再刷新登录，因此写了退出校园网的脚本，需让其在关机前执行。
 ![图片](https://github.com/user-attachments/assets/82c983df-1160-4646-8d82-ed50f1e59a03)
-3.  脚本用js，shell，py分别写出三个版本，在scripts目录下， lg为登陆脚本,out为退出脚本。
-4.  winpkg目录下为windows的exe程序，linuxpkg目录下为linux的deb包与Arch包。两者均为python脚本的打包，exe必须和config.ini同目录，linux安装后需在有config.ini的目录下执行`sjmlogin`命令。 Linux用户直接用shell(.sh)即可。运行js需要node,py需要python环境。不想要环境直接用构建的软件包并配合config.ini。 
-5. 用软件包不想用config.ini, 在sjmlogin.py找到request_body这样的请求体，改成自己的信息，运行或者重新打包，就可以不用config.ini,直接运行。
-6. 建议使用静态mac地址，然后去[自助服务](http://192.168.10.231:8080/Self/login/?302=LI)里找到左边的**无感知**打开，这样同一设备联网无需认证。账号是学号，密码Sjm+身份证后六位
+3. （重要）Linux上用sh脚本，windows7以上用ps1脚本，都在scripts目录下，lg为登陆脚本,out为退出脚本。  其他文件都不需要，学习用的，如 js和py是脚本的其他语言的实现，需要node和python环境。
+4. （无需关心） 仅用于学习的，winpkg目录下为windows的exe程序，linuxpkg目录下为linux的deb包与Arch包。exe必须和config.ini同目录，linux安装后需在有config.ini的目录下执行`sjmlogin`命令。config.ini填写个人信息。
+
 
 
 ## Linux平台
@@ -92,47 +91,46 @@ password= Sjmxxxxxx  # 密码，Sjm+身份证后六位
 
 
 ## Windows平台
-*(bat仅用于启动同目录下的exe，本脚本还没有bat或powershell实现，可以自己实现一个，就不需要exe和config.ini了。)  *
-
-> 下载release中的win.zip解压到一个目录下
-> 或手动克隆本仓库，按确保以下文件处于同一目录。
-![屏幕截图(1)_021631](https://github.com/user-attachments/assets/4218ed8e-64af-417a-906d-8b17828fad04)
-> bat脚本是为了方便开机关机运行脚本。
+**直接用lg.ps1和out.ps1脚本**实现登陆退出
 ### 信息配置
-1. 在config.ini下写入如下配置
+在lg.ps1下更改如下信息
 ```
-[login]
-domain = telecom    # 运营商 default | cmcc | telecom | unicom，分别是校园网、移动、电信、联通，填入自己办理的运营商。
-username= xxxxxx0222  # 苏州经贸学号
-password= Sjmxxxxxx  # 密码，Sjm+身份证后六位
+# 运营商 default | cmcc | telecom | unicom，分别是校园网、移动、电信、联通，填入自己办理的运营商。
+Body "{`"domain`":`"telecom`",`"username`":`"你的学号`",`"password`":`"你的密码`"}"
 ```
-2. 双击这两个exe分别测试是否正常运行。
-
 ### 开机自启动与关机自动退出认证
 1. win+R打开运行，输入`gpedit.msc`回车打开组策略编辑器。
 2. 计算机配置＞windows设置＞脚本（启动/关机），双击启动和关机进行编辑。
 ![屏幕截图(2)_021634](https://github.com/user-attachments/assets/e2d6749b-93d6-414e-906e-5ed5d4e71815)
 3. 点击添加
 ![屏幕截图(3)_021635](https://github.com/user-attachments/assets/bf3d48cb-9703-45e9-8617-4b869892c704)
-4. 点击浏览，找到autologin.bat的路径打开即可。点击确定，再点击应用，确定即可。
-5. 关机同理，找到autoout.bat。
+4. 点击浏览，找到lg.ps1的路径打开即可。点击确定，再点击应用，确定即可。
+5. 关机同理，找到out.ps1的路径。
 
+### 软件包作用
+**仅用于学习**，最好用上面的**ps1脚本**。
+winpkg下的软件包主要用于**不方便使用脚本**的懒同学，autologin.exe需要和config.ini同目录，config.ini配置如下
+```
+[login]
+domain = telecom    # 运营商 default | cmcc | telecom | unicom，分别是校园网、移动、电信、联通，填入自己办理的运营商。
+username= xxxxxx0222  # 苏州经贸学号
+password= Sjmxxxxxx  # 密码，Sjm+身份证后六位
+```
+上网查软件开机自启的方法，有很多，让autologin.exe开机自启动即可。
 
 
 
 ## 脚本相关
-1. Linux直接用sh，win上用bat+exe，也可以自己用bat或powershell实现一个。
-2. 直接运行sh，js，py文件都要先找到请求体改成自己的信息。用exe要先在config.ini写自己的信息。
+**其他相关**
+1. Linux直接用sh，win上用ps1 。win7以下可以安装curl, 使用curl命令，方法见本文最后。
+2. 直接运行sh，js，py文件都要先找到请求体改成自己的信息。用exe要先在config.ini写自己的信息并且同目录。
 3. 直接运行js需要node环境，`node lg.js`，py需要python环境，Linux可能已经作为依赖被安装了。
 4. 这个脚本实际就只是发送一个post请求而已，任何语言都能轻松实现。
 
+**自己实现**
 - 按f12或ctrl+shift+i打开浏览器开发者工具，点击网络，进入登陆界面，捕获一次请求
 ![图片](https://github.com/user-attachments/assets/79aaa906-77e4-4156-ad32-d68c3260891e)
 - 第一看请求方法是POST, 第二看过滤消息头中协议是http,服务端程序所在主机为10.255.254.13,文件名是/api/portal/v1/login,这是服务端写的API,前端请求都是发给他的。也就是http://10.255.254.13/api/portal/v1/login'。
 - 第三看消息头部分中的请求头，第四看请求部分查看请求体，类似{"domain":"telecom","username":"xxxxxx0222","password":"Sjmxxxxxx"}	""
-- 这是登陆时的POST过程，退出同理,文件在http://10.255.254.13/api/portal/v1/logout。 据此即可用自己喜欢的语言写一个POST请求。可以右键请求条目复制为Powershell/curl/fetch命令。
-
-
-
-
-
+- 这是登陆时的POST过程，退出同理,文件在http://10.255.254.13/api/portal/v1/logout。 据此即可用自己喜欢的语言写一个POST请求。
+- 可以直接右键请求条目复制为Powershell/curl/fetch命令。保存为对应文件，让他开机自启。

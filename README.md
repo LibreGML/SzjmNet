@@ -121,3 +121,8 @@ password= Sjmxxxxxx  # 密码，Sjm+身份证后六位
 
 
 ## 脚本相关
+1. Linux直接用sh，win上用bat+exe，也可以自己用bat或powershell实现一个。
+2. 直接运行sh，js，py文件都要先找到请求体改成自己的信息。用exe要先在config.ini写自己的信息。
+3. 直接运行js需要node环境，`node lg.js`，py需要python环境，Linux可能已经作为依赖被安装了。
+4. 这个脚本实际就只是发送一个post请求而已，任何语言都能轻松实现。
+

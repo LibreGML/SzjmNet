@@ -126,3 +126,13 @@ password= Sjmxxxxxx  # 密码，Sjm+身份证后六位
 3. 直接运行js需要node环境，`node lg.js`，py需要python环境，Linux可能已经作为依赖被安装了。
 4. 这个脚本实际就只是发送一个post请求而已，任何语言都能轻松实现。
 
+- 按f12或ctrl+shift+i打开浏览器开发者工具，点击网络，进入登陆界面，捕获一次请求
+![图片](https://github.com/user-attachments/assets/79aaa906-77e4-4156-ad32-d68c3260891e)
+- 第一看请求方法是POST, 第二看过滤消息头中协议是http,服务端程序所在主机为10.255.254.13,文件名是/api/portal/v1/login,这是服务端写的API,前端请求都是发给他的。也就是http://10.255.254.13/api/portal/v1/login'。
+- 第三看消息头部分中的请求头，第四看请求部分查看请求体，类似{"domain":"telecom","username":"xxxxxx0222","password":"Sjmxxxxxx"}	""
+- 这是登陆时的POST过程，退出同理,文件在http://10.255.254.13/api/portal/v1/logout。 据此即可用自己喜欢的语言写一个POST请求。可以右键请求条目复制为Powershell命令。
+
+
+
+
+

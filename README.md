@@ -1,5 +1,7 @@
 #### My project is to make all software free(自由)  --Richard Stallman
 # 苏州经贸校园网双系统(win+linux)自动登录解决方案
+- 最后附有安卓快捷方案
+
 前言:  
 1. 本脚本仅适用于所有使用linux的同学，或有编程/系统知识的同学。
 2. 由于双系统切换会被识别为两台不同的设备，在某系统关机时未退出，在另一系统上会进入以下界面，需手动下线设备，再刷新登录，因此写了退出校园网的脚本，需让其在关机前执行。
@@ -136,3 +138,41 @@ password= Sjmxxxxxx  # 密码，Sjm+身份证后六位
 - 第三看消息头部分中的请求头，第四看请求部分查看请求体，类似{"domain":"telecom","username":"xxxxxx0222","password":"Sjmxxxxxx"}	""
 - 这是登陆时的POST过程，退出同理,后端API文件在http://10.255.254.13/api/portal/v1/logout。 据此即可用自己喜欢的语言写一个POST请求。
 - 可以直接右键请求条目复制为Powershell/curl/fetch命令。保存为对应文件，让他开机自启。
+
+
+
+
+## 安卓
+新建一个lg.sh文件，粘贴如下：
+```
+#!/bin/bash
+# 定义URL和请求头
+url='http://10.255.254.13/api/portal/v1/login'
+headers=(
+  "Accept: application/json, text/javascript, */*; q=0.01"
+  "Accept-Encoding: gzip, deflate"
+  "Accept-Language: zh-CN,zh;q=0.8,zh-TW;q=0.7,zh-HK;q=0.5,en-US;q=0.3,en;q=0.2"
+  "Connection: keep-alive"
+  "Content-Type: application/json; charset=UTF-8"  # 修改Content-Type为application/json
+  "DNT: 1"
+  "Host: 10.255.254.13"
+  "Origin: http://10.255.254.13"
+  "Priority: u=0"
+  "Referer: http://10.255.254.13/portal/index.html?v=202102142343"
+  "Sec-GPC: 1"
+  "User-Agent: Mozilla/5.0 (X11; Linux x86_64; rv:131.0) Gecko/20100101 Firefox/131.0"
+  "X-Requested-With: XMLHttpRequest"
+)
+
+# 构建请求体
+request_body='{
+  "domain": "telecom",
+  "username": "240xxxxxx",
+  "password": "Sjmxxxxxx"
+}'
+
+# 发送POST请求并解析响应
+response=$(curl -s -H "${headers[@]}" -d "$request_body" "$url")
+```
+
+此脚本可直接运行在安卓端，使用shizuku+autoTask自动在特定条件下执行.sh脚本，即可实现自动化，具体教程请在B站搜索shizuku或自动任务，需要手机支持无线调试，华为请附加一个黑阈来激活shizuku，或有线adb方式。测试此脚本可使用MT管理器直接执行，或Termux运行。

@@ -176,3 +176,6 @@ response=$(curl -s -H "${headers[@]}" -d "$request_body" "$url")
 ```
 
 此脚本可直接运行在安卓端，使用shizuku+autoTask自动在特定条件下执行.sh脚本，即可实现自动化，具体教程请在B站搜索shizuku或自动任务，需要手机支持无线调试，华为请附加一个黑阈来激活shizuku，或有线adb方式。测试此脚本可使用MT管理器直接执行，或Termux运行。
+[AutoTask](https://app.122.city/tasker)在此下载，用shizuku激活后，创建任务如下并运行。
+![IMG_20241010_215735](https://github.com/user-attachments/assets/3831ebb2-6be4-4edf-8694-92c5dc2d2470)
+

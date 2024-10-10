@@ -1,6 +1,6 @@
 #### My project is to make all software free(自由)  --Richard Stallman
 # 苏州经贸校园网双系统(win+linux)自动登录解决方案
-- 最后附有安卓快捷方案
+## 文末附有安卓端方案
 
 前言:  
 1. 本脚本仅适用于所有使用linux的同学，或有编程/系统知识的同学。
